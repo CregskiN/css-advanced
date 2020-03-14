@@ -1,0 +1,25 @@
+#container {
+    width: 80%;
+    margin: 0 auto;
+    column-width: 202px;
+    /* column-count: 5; */
+}
+
+.box {
+    padding: 10px 0 0 15px;
+
+}
+
+.pic {
+    padding: 10px;
+    width: 165px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.pic img {
+    display: block;
+    width: 165px;
+    height: auto;
+}
