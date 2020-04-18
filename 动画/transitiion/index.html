@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        background-color: #eee;
+    }
+
+    div {
+        background-color: red;
+    }
+
+    .block {
+        width: 200px;
+        height: 200px;
+    }
+
+    .block:hover {
+        width: 700px;
+        height: 700px;
+    }
+
+    .block {
+        /* transition: 1s; */
+        /* transition: 1s height, 1s 2s width; */
+        /* delay:指明发生顺序 1s单纯变化height 1s等待 2s单纯变化width */
+    }
+
+    /* transition-timing-function 变化速度 */
+    .block {
+        /* transition: 1s ease-out; */
+        /* 
+        ease 逐渐放慢， 
+        ease-in 慢入快出，
+        ease-out 快入漫出 ，
+        linear匀速 ， 
+        cubic-bezier函数：自定义速度模式
+        */
+    }
+
+    .block {
+        transition: 2s 1s height ease;
+        /* transition-property: height;
+        transition-duration: 2s;
+        transition-delay: 1s;
+        transition-timing-function: ease; */
+    }
+
+    /* 
+    transition的优点在于简单易用，但是它有几个很大的局限。  
+
+    （1）transition需要事件触发，所以没法在网页加载时自动发生。
+
+    （2）transition是一次性的，不能重复发生，除非一再触发。
+
+    （3）transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
+
+    （4）一条transition规则，只能定义一个属性的变化，不能涉及多个属性。
+    */
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<div class="block">block</div>
+
+<body>
+
+</body>
+
+</html>

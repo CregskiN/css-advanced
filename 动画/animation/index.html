@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: #fff;
+            border: 1px solid blue;
+        }
+
+        /* animation: 1s rainbow infinite; */
+        /* 定义一个名为rainbow的动画 */
+        /* .block:hover {
+            animation: 1s rainbow 3;
+        } */
+
+        /* 播放次数： infinite 无限次播放 , 1 一次播放*/
+
+        /* 播放规则： 
+            none 默认，返回未开始状态
+            forwards 完成后停留在100% 
+            backwards 完成后返回第一帧状态
+            both 根据animation-direction 轮流使用 backwards forwards
+        */
+
+        /* .block:hover {
+            animation: 2s rainbow 3 reverse;
+        } */
+
+        /* 
+            animation-direction
+            normal 默认，黄->红->绿 ->黄->红->绿 。。。
+            alternate 黄->红->绿 ->绿->红->黄 。。。
+            reverse 绿->红->黄 ->绿->红->黄
+            alternate-reverse 绿->红->黄 ->黄->红->绿 。。。
+        */
+
+        /* 简写 */
+        /* .block {
+            animation: 1s 1s rainbow linear 3 forwards normal;
+        } */
+        /* 
+                animation-name: rainbow;
+                animation-duration: 1s;
+                animation-timing-function: linear;
+                animation-delay: 1s;
+                animation-fill-mode:forwards;
+                animation-direction: normal;
+                animation-iteration-count: 3;
+             */
+
+        /* 动画终止 */
+        .block {
+            animation:1s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .block:hover {
+            animation-play-state: running;
+        }
+
+
+        @keyframes rainbow {
+            0% {
+                width: 300px;
+                height: 300px;
+                background-color: yellow;
+            }
+
+            50% {
+                width: 800px;
+                height: 800px;
+                background-color: red;
+            }
+
+            100% {
+                width: 800px;
+                height: 800px;
+                background-color: green;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block">block</div>
+</body>
+
+</html>
