@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>屏幕旋转事件</title>
+</head>
+
+<body>
+</body>
+<script type="text/javascript">
+    addEventListener('load', function () {
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
+        window.onorientationchange = function () {
+            console.log('onload事件触发了')
+        }
+    });
+</script>
+
+</html>
