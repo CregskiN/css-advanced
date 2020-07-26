@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 默认width:300px height:150px; -->
+    <canvas id="canvas"></canvas>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext("2d");
+
+        /**
+         * 绘制路径
+         *      1. arc(x, y, redius, startAngle, endAngle, counterclockwise: boolean): 
+         *  以(x, y)为圆心，绘制一条弧线，半径radius，从startAngle开始，到endAngle结束，counterclockwise ? 逆时针 : 顺时针
+         * 
+         *      2. arcTo(x1, y1, x2, y2, radius):
+         *  从上一点开始绘制一条弧弧线，到(x2, y2)为止，并且以半径radius穿过(x1, y1)
+         * 
+         *      3. bezierCurveTo(c1x, c1y, c2x, c2y, x, y):
+         *  从上一点开始绘制一条曲线，到(x, y)为止，并且(c1x, c1y)和(c2x, c2y)为控制点
+         * 
+         *      4. lineTo(x, y):
+         *  从上一点开始绘制一条直线，到(x, y)为止
+         * 
+         *      5. moveTo(x, y):
+         *  将绘图游标移动到(x, y)，不画线
+         * 
+         *      6. quadraticCurveTo(cx, cy, x, y):
+         *  从上一点开始绘制一条二次曲线，到(x, y)为止，并且以(cx, cy)为控制点
+         * 
+         *      7. rect(x, y, width, height):
+         *  从点(x, y)开始，绘制一个矩形，宽度width，高度height，
+         */
+    </script>
+</body>
+
+</html>
