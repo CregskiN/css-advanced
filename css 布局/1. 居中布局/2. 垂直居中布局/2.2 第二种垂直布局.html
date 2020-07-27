@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>css layout</title>
+    <style>
+        .parent {
+            width: 500px;
+            height: 200px;
+            background-color: red;
+
+            position: relative;
+        }
+
+        .child {
+            width: 200px;
+            height: 50px;
+            background-color: #fff;
+
+            position: absolute;
+            top: 50%; /* 距离顶部偏移量 */
+            transform: translateY(-50%);
+        }
+        /* 
+        优点
+        1. 无论父级元素是否脱离文档流，不会影响子级元素效果
+        缺点
+        1. transform 兼容性不好 IE9+
+        */
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        验证parent是否被影响：未被影响
+        <div class="child">
+           
+        </div>
+    </div>
+</body>
+
+</html>

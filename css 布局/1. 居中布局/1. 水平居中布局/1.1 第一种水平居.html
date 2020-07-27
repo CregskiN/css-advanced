@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>css layout</title>
+    <style>
+        body {
+            width: 1000px;
+            background-color: #f2f2f2;
+        }
+
+        .parent {
+            width: 500px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .child {
+            width: 200px;
+            height: 50px;
+            background-color: #fff;
+            display: inline-block;
+        }
+
+        /* 
+        text-align: 为文本内容设置对齐方式
+            left
+            right
+            center
+        */
+
+        /* 
+        display: inline-block;
+            block
+            inline ( text-align 属性有效 )
+                width, height 失效
+            inline-block (block + inline)
+    */
+
+        /* 
+        优点：
+            1. 兼容性好 IE6 - 9 CSS2
+        缺点
+            1. text-align 具有继承性
+                解决办法：给子级元素设置text-align以覆盖
+        */
+    </style>
+</head>
+
+<body>
+    <div class="parent" style="background-color:red;">
+        <div class="child">
+            <div style="background-color: #000;width:100px;height:20px;">child继承了text-align</div>
+        </div>
+    </div>
+</body>
+
+</html>

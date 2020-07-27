@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>css layout</title>
+    <style>
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent {
+            width: 500px;
+            height: 100px;
+            background-color: red;
+
+            display: table-cell;
+            /* 
+            display: table-cell;
+                table: 设置当前元素为<table>效果
+                table-cell: 设置<td>（单元格）效果，内容有水平和垂直布局
+            */
+            vertical-align: middle;
+            /* 
+            vertical-align 用来设置文本内容的垂直方向
+                top
+                middle
+                bottom
+            */
+        }
+
+        .child {
+            width: 200px;
+            height: 50px;
+            background-color: #fff;
+        }
+        /* 
+        优点
+        1. 兼容性好 IE 6-9
+        缺点
+        1. vertical-align 有继承性，导致父级元素也有效果
+        */
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <p>验证父级元素是否有垂直居中对齐</p>
+        <div class="child">
+           
+        </div>
+    </div>
+</body>
+
+</html>

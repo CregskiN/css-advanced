@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css layout</title>
+    <style>
+        .parent {
+            width: 500px;
+            height: 200px;
+            background-color: red;
+            color: black;
+            /* <td> */
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .child {
+            width: 200px;
+            height: 50px;
+            background-color: #fff;
+            /* <table> */
+            display: block; /* block table 都可以 */
+            margin: 0 auto;
+        }
+        /* 
+        优点
+        1. 兼容好
+        缺点
+        1. 语义话不是很好
+        2. 父子元素都有设置属性，耦合
+        */
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">
+           
+        </div>
+    </div>
+</body>
+
+</html>
