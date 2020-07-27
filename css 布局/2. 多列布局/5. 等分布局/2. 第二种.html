@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent {
+
+            display: table;
+            /* <table> 自动等分，但不会占满 */
+            width: 100%;
+        }
+
+        .column1,
+        .column2,
+        .column3,
+        .column4 {
+            height: 300px;
+            display: table-cell;
+        }
+
+        .column1 {
+            background-color: red;
+        }
+
+        .column2 {
+            background-color: green;
+        }
+
+        .column3 {
+            background-color: blue;
+        }
+
+        .column4 {
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 作为父级容器 -->
+    <div class="parent">
+        <div class="column1">
+            <p>1</p>
+        </div>
+        <div class="column2">
+            <p>2</p>
+        </div>
+        <div class="column3">
+            <p>3</p>
+        </div>
+        <div class="column4">
+            <p>4</p>
+        </div>
+    </div>
+</body>
+
+</html>

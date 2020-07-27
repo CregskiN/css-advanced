@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            right: 0;
+        }
+
+        .parent {
+            /* 三个子级元素浮动，高度坍塌 开启BFC */
+            /* overflow: hidden; */
+            height: 300px;
+            min-width: 300px;
+
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+
+        .left,
+        .center,
+        .right {
+            height: 300px;
+
+            float: left;
+        }
+
+        .left {
+            background-color: red;
+
+            width: 300px;
+
+            /* 从第二行移动到第一行 */
+            margin-left: -100%;
+            /* -100%和300px不能一起 解决方案：百分比和relative混用 */
+
+            position: relative;
+            left: -300px;
+        }
+
+        .center {
+            background-color: green;
+
+            width: 100%;
+            /* min-width: 300px; */
+        }
+
+        .right {
+            background-color: blue;
+            width: 300px;
+
+            margin-left: -300px;
+            
+            position: relative;
+            right: -300px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 为解决：代码顺序与显示顺序不一致 -->
+    <!-- <div class="left"></div>
+    <div class="right"></div>
+    <div class="center">asdasd</div> -->
+
+    <!-- 解决方案：套父级结构，一个不够两个，两个不够三个 -->
+    <div class="parent">
+        <div class="center">center</div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

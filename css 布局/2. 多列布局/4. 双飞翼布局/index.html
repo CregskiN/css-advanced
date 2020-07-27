@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            right: 0;
+        }
+
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .parent {
+            /* 三个子级元素浮动，高度坍塌 开启BFC */
+            /* overflow: hidden; */
+            height: 300px;
+        }
+
+        .left,
+        .center,
+        .right {
+            height: 300px;
+
+            float: left;
+        }
+
+        .left {
+            background-color: red;
+
+            width: 300px;
+
+            /* 从第二行移动到第一行 */
+            margin-left: -100%;
+            /* -100%和300px不能一起 解决方案：百分比和relative混用 */
+
+
+        }
+
+        .center {
+            background-color: green;
+
+            width: 100%;
+            min-width: 300px;
+        }
+
+        .right {
+            background-color: blue;
+            width: 300px;
+
+            margin-left: -300px;
+        }
+
+        .inner {
+            height: 300px;
+            background-color: #fff;
+
+            margin-left: 300px;
+            margin-right: 300px;
+        }    
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="center">
+            <div class="inner">
+                center - inner，双飞翼使用inner解决覆盖问题
+            </div>
+        </div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

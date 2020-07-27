@@ -350,12 +350,16 @@
 
 左右两列，父元素制定宽，子元素自适应。如果左列指定宽度，右列自适应
 
++ float + margin-left
++ float + overflow ( BFC )
++ table + table-layoout + table-cell
+
 ### 2.1.1 float + margin
 
 ```html
 <div class="parent">
   <div class="left">左：定宽</div>
-  <div class="right">右：定宽
+  <div class="right">右：自适应
     <div class="inner"></div>
   </div>
 </div>
@@ -365,11 +369,7 @@
     padding: 0;
     margin: 0;
   }
-
-  body {
-    width: 1000px;
-  }
-
+  
   .parent {
     width: 100vw;
     height: 100vh;
@@ -395,18 +395,18 @@
     margin-left: 300px;
   }
 
-  .inner {
+  /* .inner {
     height: 300px;
     background-color: #fff;
 
     clear: both;
-  }
+  } */
 
   /* 
   优点
   1. 实现方式简单
   缺点
-  1. 右侧自适应模块的margin与左侧width耦合
+  1. 右侧自适应模块的margin与左侧width耦合
   2. 定宽元素浮动 与 自适应元素不浮动，导致兼容性不好。两元素之间存在空白区域
   3. 右侧内部子元素使用clear: both 会造成子级元素跑到右侧之外
   解决办法：为自适应元素定位父级元素
@@ -414,17 +414,203 @@
 </style>
 ```
 
++ 优点
+  + 实现方式简单
++ 缺点
+  + 右列 margin-left 与左列 width 耦合
+  + 左列 float 浮动，右列不浮动，有些浏览器会在二者之间存在空白
+  + 右列子级元素使用clear:both; 会导致样式异常
 
 
-### 2.2.2 float + overflow
+
+#### 优化版
+
+````html
+<div class="parent">
+  <div class="left">左：定宽</div>
+  <div class="right-fix">
+    <div class="right">右：自适应
+      <div class="inner">inner</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .parent {
+    background-color: #f2f2f2;
+  }
+
+  .left,
+  .right {
+    height: 300px;
+  }
+
+  .left {
+    /* 左侧设置定宽 */
+    width: 300px;
+    background-color: chartreuse;
+
+    float: left;
+    /* 设置更高的显示层级，避免被右侧 right-fix 覆盖 */
+    position: relative;
+  }
+
+  .right-fix {
+    float: right;
+    background-color: cadetblue;
+    /* 
+    为消除右侧子级元素 clear:both; 导致的样式异常，使用right-fix float:right;
+    1. float:right 后，div 自动占满的特性失效 —— 设置 width: 100%; 
+    2, left 行剩余空间不足 100%，right-fix 被挤到第二行 —— margin-left: -300px; left、right-fix 同在第一行
+    3. right-fix 占满整个第一行空间，right 被 left 覆盖 —— margin-left: 300px; right 显示
+    */
+    width: 100%;
+    margin-left: -300px;
+  }
+
+
+  .right {
+    background-color: coral;
+
+    margin-left: 300px;
+  }
+
+  .inner {
+    background-color: #fff;
+    color: black;
+
+    clear: both;
+  }
+
+</style>
+````
+
++ 优点
+  + 实现方式简单
++ 缺点
+  + right-fix 的 margin-left 、 right 的 margin-left 与 左列的 width 耦合
+
+
+
+### 2.2.2 float + overflow ( BFC )
+
+```html
+<div class="parent">
+  <div class="left">左：定宽</div>
+  <div class="right">右：自适应
+    <div>inner</div>
+  </div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .parent {
+    background-color: #f2f2f2;
+  }
+
+  .left,
+  .right {
+    height: 300px;
+  }
+
+  .left {
+    /* 左侧设置定宽 */
+    width: 300px;
+    background-color: chartreuse;
+
+    float: left;
+  }
+
+  .right {
+    background-color: coral;
+    /* 开启BFC - 当前元素的内部环境与外界完全隔离 */
+    overflow: hidden;
+  }
+
+</style>
+```
+
++ 优点
+  + 开启 BFC，左列浮动右列不浮动，老旧浏览器不会出现空白区域
+  + 简单易用
++ 缺点
+  + 右列内容溢出部分会被隐藏
+
+
 
 ### 2.2.3 display: table + table-layout
+
+```html
+<div class="parent">
+  <div class="left">左：定宽</div>
+  <div class="right">右：自适应</div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    /* width: 1000px; */
+  }
+
+  .parent {
+    background-color: #f2f2f2;
+    width: 100%;
+
+    /* 表格单元格自动分配，左侧定宽，右侧自动分配 */
+    display: table;
+    table-layout: fixed; /* 为了解决表格中双边框问题 */
+  }
+
+  .left,
+  .right {
+    height: 300px;
+
+    display: table-cell;
+  }
+
+  .left {
+    /* 左侧设置定宽 */
+    width: 300px;
+    background-color: chartreuse;
+
+  }
+
+  .right {
+    background-color: coral;
+  }
+</style>
+```
+
++ 优点
+
+  + 兼容性好
+
++ 缺点
+
+  + display:table; 可能制约格式。
+
+    + 如双边框问题
+
+      解决办法：table-layout: fixed;
 
 
 
 ## 2.2 三列布局
 
-列1 列2 定宽，列3 自适应
+列1 列2 定宽，列3 自适应。与两列布局大同小异这里不再展示
 
 ### 2.2.1 float + margin
 
@@ -432,13 +618,107 @@
 
 ### 2.2.3 display: table + table-layout
 
+
+
 ## 2.3 圣杯布局
 
-## 双飞翼布局
+左中右、上中下
 
-## 等分布局
+左列定宽、中列自适应、右列定宽
 
-## 等高布局
+上行定高、中行自适应、下行定高
 
-## CSS 多列布局
+三行三列
+
+行：三个 div
+
+核心是第二行的三列，中列自适应如何实现
+
+### 2.3.1. 基础实现
+
+```html
+<body>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="center">center</div>
+</body>
+
+<style>
+  * {
+    padding: 0;
+    right: 0;
+  }
+
+  .left,
+  .center,
+  .right {
+    height: 300px;
+  }
+
+  .left {
+    background-color: red;
+
+    width: 300px;
+    float: left;
+  }
+
+  .center {
+    background-color: green;
+
+    margin: auto 300px;
+  }
+
+  .right {
+    background-color: blue;
+
+    float: right;
+    width: 300px;
+  }
+</style>
+```
+
++ 优点
+  + 实现简单
++ 缺点
+  + 自适应的中心列放在最后，不利于 SEO
+
+> 需求：将 center 放在最前
+
+
+
+### 2.3.2 优化
+
+```html
+
+```
+
+
+
+## 2.4 双飞翼布局
+
+淘宝提出，针对圣杯布局的优化。针对圣杯布局中的定位问题
+
+### 2.4.1 float
+
+### 2.4.2 display:table 相关
+
+
+
+## 2.5 等分布局
+
+一行被分为若干列，每一列宽度相等
+
+
+
+
+
+## 2.6 等高布局
+
+### 2.6.1 display:table 相关
+
+### 2.6.2 padding + margin 实现等高布局
+
+
+
+## 2.7 CSS 多列布局
 

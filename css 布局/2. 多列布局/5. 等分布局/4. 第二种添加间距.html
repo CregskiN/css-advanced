@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent-fix {
+            overflow: hidden;
+            width: 1414px;
+
+            margin: 0 auto;
+        }
+
+        .parent {
+            display: table;
+            /* <table> 自动等分，但不会占满 */
+            width: 1434px;
+
+            margin-left: -20px;
+        }
+
+        .column1,
+        .column2,
+        .column3,
+        .column4 {
+            height: 300px;
+            display: table-cell;
+
+            padding-left: 20px;
+            box-sizing: border-box;
+        }
+
+        .inner {
+            height: 300px;
+        }
+
+        .column1 .inner {
+            background-color: red;
+        }
+
+        .column2 .inner {
+            background-color: green;
+        }
+
+        .column3 .inner {
+            background-color: blue;
+        }
+
+        .column4 .inner {
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 作为父级容器 -->
+    <div class="parent-fix">
+        <div class="parent">
+            <div class="column1">
+                <div class="inner">1</div>
+            </div>
+            <div class="column2">
+                <div class="inner">2</div>
+            </div>
+            <div class="column3">
+                <div class="inner">3</div>
+            </div>
+            <div class="column4">
+                <div class="inner">4</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
